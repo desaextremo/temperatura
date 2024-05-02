@@ -17,12 +17,12 @@ Es asi como las funciones:
 
 Se convertirán en servicios web que se identifican de forma única mediante una **url** y podremos pedirles realizar cálculos de temperatura mediante el navegador web o una aplicación web construida con: HTML/CSS/JavaScript.
 
-[Conceptos API- REST](https://blog.hubspot.es/website/que-es-api-rest){:target="_blank"}
+[Conceptos API- REST](https://blog.hubspot.es/website/que-es-api-rest)
 
 ## Como lo lograremos?
 
 Para convertir nuestro programa **conversor_grados.py** en un **API** que exponga servicios web, utilizaremos los paquetes **fastapi** y **uvicorn**.
-[FastAPI]([https://](https://fastapi.tiangolo.com/es/)){:target="_blank"}
+[FastAPI](https://fastapi.tiangolo.com/es/)
 
 **FastAPI** Es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
 
