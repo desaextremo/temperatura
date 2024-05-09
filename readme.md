@@ -382,29 +382,28 @@ Nuestros métodos con anotaciones FastAPI para soportar peticiones http tipo get
 
 ```python
 @app.get("/celsius_to_fahrenheit/{valor_grados}")
-def celsius_to_fahrenheit(valor_grados):
-    return valor_grados * 9 / 5 + 32
-
+def celsius_to_fahrenheit(valor_grados: float):
+    return {"resultado": valor_grados * 9 / 5 + 32}
 
 @app.get("/celsius_to_kelvin/{valor_grados}")
-def celsius_to_kelvin(valor_grados):
-    return valor_grados + 273.15
+def celsius_to_kelvin(valor_grados: float):
+    return {"resultado": valor_grados + 273.15}
 
 @app.get("/fahrenheit_to_celsius/{valor_grados}")
-def fahrenheit_to_celsius(valor_grados):
-    return  round(((valor_grados) - 32) * (5 /9),2)
+def fahrenheit_to_celsius(valor_grados: float):
+    return {"resultado": round(((valor_grados) - 32) * (5 / 9), 2)}
 
 @app.get("/fahrenheit_to_kelvin/{valor_grados}")
-def fahrenheit_to_kelvin(valor_grados):
-    return round((valor_grados - 32) * 5/9 + 273.15,2)
+def fahrenheit_to_kelvin(valor_grados: float):
+    return {"resultado": round((valor_grados - 32) * 5 / 9 + 273.15, 2)}
 
 @app.get("/kelvin_to_celsius/{valor_grados}")
-def kelvin_to_celsius(valor_grados):
-    return (valor_grados - 273.15)
+def kelvin_to_celsius(valor_grados: float):
+    return {"resultado": valor_grados - 273.15}
 
 @app.get("/kelvin_to_fahrenheit/{valor_grados}")
-def kelvin_to_fahrenheit(valor_grados):
-    return round((valor_grados -  273.15) * 9/5 + 32,2)
+def kelvin_to_fahrenheit(valor_grados: float):
+    return {"resultado": round((valor_grados - 273.15) * 9 / 5 + 32, 2)}
 ```
 
 **Código resultante:**
