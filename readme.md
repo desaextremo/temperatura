@@ -465,7 +465,8 @@ Ejecutar programa con normalidad
 Escribir la instrucción: 
 
 ```text
-uvicorn conversor_fastapi:app --host 0.0.0.0 --port 8080
+uvicorn <nombre programa>:<nombre variable que referencia a FastAPI> --host 0.0.0.0 --port 8080
+uvicorn conversor_grados:app --host 0.0.0.0 --port 8080
 ```
 
 ![Ejecución desde VSCODE](img/execute2.png)
