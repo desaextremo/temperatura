@@ -410,96 +410,51 @@ def kelvin_to_fahrenheit(valor_grados):
 **Código resultante:**
 
 ```python
+'''
+https://realpython.com/fastapi-python-web-apis/
+http://127.0.0.1:8080/docs 
+Este código define varias rutas que corresponden a las conversiones que 
+quieres realizar, y cada una toma un parámetro valor_grados en la URL y
+devuelve el resultado de la conversión en formato JSON. Por ejemplo, para
+convertir grados Celsius a grados Fahrenheit, puedes hacer una solicitud 
+GET a /celsius_to_fahrenheit/{valor_grados} donde {valor_grados} es el valor
+en grados Celsius que deseas convertir.
+
+Una vez que tengas este código, puedes ejecutar tu servicio web ejecutando
+el archivo Python y luego accediendo a las rutas definidas en tu navegador
+o mediante herramientas como cURL o Postman.
+'''
 import uvicorn
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
-#Llamamos a FastAPI, y desde este momento haremos referencia a este mediante la variable 'app'
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Puedes restringir esto a los orígenes que desees permitir
-    allow_credentials=True,
-    allow_methods=["GET"],
-    allow_headers=["*"],
-)
-
-'''
-1   Convertir grados Celsius a grados Fahrenheit
-
-parametros de entrada: Parámetro tipo float con Valor en grados Celsius
-aplicar formula: (valor en celcius * 9 / 5 + 32) 
-retono: Retorno tipo float con valor en grados Fahrenheit
-Salida esperada para valor en grados 12.5: 54.5
-'''
 @app.get("/celsius_to_fahrenheit/{valor_grados}")
-def celsius_to_fahrenheit(valor_grados):
-    return valor_grados * 9 / 5 + 32
+def celsius_to_fahrenheit(valor_grados: float):
+    return {"resultado": valor_grados * 9 / 5 + 32}
 
-'''
-2   Convertir grados Celsius a grados Kelvin
-
-parametros de entrada: Parámetro tipo float con Valor en grados Celsius
-aplicar formula: valor en celcius + 273.15	
-retono: Retorno tipo float con valor en grados Kelvin
-Salida esperada para valor en grados 12.5: 285.65
-'''
 @app.get("/celsius_to_kelvin/{valor_grados}")
-def celsius_to_kelvin(valor_grados):
-    return valor_grados + 273.15
+def celsius_to_kelvin(valor_grados: float):
+    return {"resultado": valor_grados + 273.15}
 
-'''
-3   Convertir grados Fahrenheit a grados Celsius
-
-parametros de entrada: Parámetro tipo float con Valor en grados Fahrenheit
-aplicar formula: ((valor en fahrenheit - 32) * (5 /9)
-retono: Retorno tipo float con valor en grados Celsius 
-Salida esperada para valor en grados 12.5: -10.83   
-'''
 @app.get("/fahrenheit_to_celsius/{valor_grados}")
-def fahrenheit_to_celsius(valor_grados):
-    return  round(((valor_grados) - 32) * (5 /9),2)
+def fahrenheit_to_celsius(valor_grados: float):
+    return {"resultado": round(((valor_grados) - 32) * (5 / 9), 2)}
 
-
-'''
-4   Convertir grados Fahrenheit a grados Kelvin	
-
-Nombre: farenheitToKelvin
-Parámetros de entrada: Parámetro tipo float con Valor en grados Fahrenheit
-Formula: ((valor_grados - 32) * 5/9 + 273.15)
-Retono: Retorno tipo float con valor en grados Kelvin
-Salida esperada para valor en grados 12.5: 262.32
-'''
 @app.get("/fahrenheit_to_kelvin/{valor_grados}")
-def fahrenheit_to_kelvin(valor_grados):
-    return round((valor_grados - 32) * 5/9 + 273.15,2)
-    
+def fahrenheit_to_kelvin(valor_grados: float):
+    return {"resultado": round((valor_grados - 32) * 5 / 9 + 273.15, 2)}
 
-'''
-5   Convertir grados Kelvin a grados Celsius
-
-Nombre: kelvinToCelsius
-Parámetros de entrada: Parámetro tipo float con Valor en grados Kelvin
-Formula: (valor_grados - 273.15)
-Retono: Retorno tipo float con valor en grados Celsius
-Salida esperada para valor en grados 12.5: -260.65
-'''
 @app.get("/kelvin_to_celsius/{valor_grados}")
-def kelvin_to_celsius(valor_grados):
-    return (valor_grados - 273.15)
+def kelvin_to_celsius(valor_grados: float):
+    return {"resultado": valor_grados - 273.15}
 
-'''
-6   Convertir grados Kelvin a grados Fahrenheit	
-Nombre: kelvinToFarenheit
-Parámetros de entrada: Parámetro tipo float con Valor en grados Kelvin
-Formula: ((valor_grados -  273.15) * (9/5 + 32))
-Retono: Retorno tipo float con valor en grados Fahrenheit
-Salida esperada para valor en grados 12.5: -437.17
-'''
 @app.get("/kelvin_to_fahrenheit/{valor_grados}")
-def kelvin_to_fahrenheit(valor_grados):
-    return round((valor_grados -  273.15) * 9/5 + 32,2)
+def kelvin_to_fahrenheit(valor_grados: float):
+    return {"resultado": round((valor_grados - 273.15) * 9 / 5 + 32, 2)}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8080)
 
 ```
 ## Como ejecutar nuestro programa e iniciar el servidor/servicio:
